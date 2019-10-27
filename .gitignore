@@ -1,13 +1,4 @@
-.DS_Store
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-dist
-docs/build
-docs/index.html
-docs/*.woff
-docs/*.ttf
+node_modules
 
 # Editor directories and files
 .idea
