@@ -1,6 +1,6 @@
 {
   "name": "@sociosarbis/el-word-select",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "author": "https://github.com/sociosarbis",
   "license": "MIT",
@@ -42,7 +42,8 @@
     "@babel/plugin-transform-runtime": "^7.4.3",
     "@babel/preset-env": "^7.4.3",
     "@femessage/el-form-renderer": "^1.11.5",
-    "axios": "^0.19.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.5",
     "file-loader": "^3.0.1",
     "github-release-notes": "^0.17.0",
@@ -63,6 +64,7 @@
     "stylelint": "^9.10.0",
     "stylelint-config-standard": "^18.2.0",
     "vue": "^2.6.10",
+    "vue-jest": "^3.0.5",
     "vue-loader": "^15.7.1",
     "vue-styleguidist": "^3.16.3",
     "vue-template-compiler": "^2.5.16",
@@ -92,5 +94,21 @@
       "stylelint --fix",
       "git add"
     ]
+  },
+  "resolutions": {
+    "@babel/core": "^7.4.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "transform": {
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest",
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
+    }
   }
 }

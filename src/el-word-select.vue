@@ -8,6 +8,7 @@
     @vmove="handlePointerMove"
     @vup="handlePointerUp"
   >
+    <!-- @slot 放置被包裹的组件 -->
     <slot />
     <el-popover
       v-if="showHandle"
@@ -16,6 +17,7 @@
       trigger="manual"
       :value="isSelected"
     >
+      <!-- @slot 原意是当有selection时，该slot显示对selection进行操作的组件 -->
       <slot name="selection-handle" />
       <div class="selection-ref" slot="reference" :style="popperStyle"></div>
     </el-popover>
@@ -26,6 +28,7 @@
       trigger="manual"
       :value="isSelected"
     >
+      <!-- @slot 功能放置是类似于搜索框下带有的结果列表或需要根据selection弹出的信息 -->
       <slot name="suggestion" />
       <div class="selection-ref" slot="reference" :style="popperStyle"></div>
     </el-popover>
@@ -55,14 +58,23 @@ const defaultSuggestPopoverOptions = {
 
 export default {
   props: {
+    /**
+     * 是否需要显示handle slot的popper
+     */
     showHandle: {
       type: Boolean,
       default: true
     },
+    /**
+     * 是否显示suggest slot的popper
+     */
     showSuggest: {
       type: Boolean,
       default: true
     },
+    /**
+     * handle slot的popper的props，属性直接绑定在el-popover组件上
+     */
     handlePopoverOptions: {
       type: Object,
       default() {
@@ -71,15 +83,21 @@ export default {
         }
       }
     },
+    /**
+     * suggest slot的popper的props，使用方法与handlePopoverOptions一样
+     */
     suggestPopoverOptions: {
       type: Object,
       default() {
         return {...defaultSuggestPopoverOptions}
       }
     },
-    static: {
+    /**
+     * 当autoClose为false时，不会因为组件内的用户的文本选择丢失，而关闭上面的popper
+     */
+    autoClose: {
       type: Boolean,
-      default: false
+      default: true
     }
   },
   data() {
@@ -95,8 +113,8 @@ export default {
     select: wordSelectDirective
   },
   watch: {
-    static(value) {
-      if (!value) {
+    autoClose(value) {
+      if (value) {
         this.maybeHidePoppper()
       }
     }
@@ -124,6 +142,10 @@ export default {
     }
   },
   methods: {
+    /**
+     * 收起所有的popper
+     * @public
+     */
     close() {
       this.isSelected = false
     },
@@ -151,20 +173,23 @@ export default {
         this.selectionWidth = bounds.width
         this.selectionHeight = bounds.height
         this.isSelected = true
+        /**
+         * @property {string} selectedText 用户选中的文本
+         */
         this.$emit('change', range.toString())
-        if (this.static) {
+        if (!this.autoClose) {
           this.$nextTick(() => {
             this.updatePopperPosition()
           })
         }
       } else {
-        if (this.static) return
+        if (!this.autoClose) return
         this.close()
       }
     },
     handlePointerMove() {},
     handlePointerDown(e) {
-      if (this.static) return
+      if (!this.autoClose) return
       this.$emit('change', '')
       this.close()
     },
@@ -185,7 +210,7 @@ export default {
       return newRange
     },
     maybeHidePoppper() {
-      if (this.static) return
+      if (!this.autoClose) return
       if (this.isSelected && !this.checkIsInSelection()) {
         this.close()
       }
@@ -224,9 +249,9 @@ export default {
     },
     mergePopoverOptions(source, target) {
       if (target) {
-        const newPopperOptions = target.popperOptions ?
-          { ...source.popperOptions, ...target.popperOptions }
-        : source.popperOptions
+        const newPopperOptions = target.popperOptions
+          ? {...source.popperOptions, ...target.popperOptions}
+          : source.popperOptions
         return {
           ...source,
           ...target,

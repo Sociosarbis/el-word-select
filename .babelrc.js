@@ -1,13 +1,16 @@
-module.exports = api => {
-  return {
-    presets: [['@babel/env', {modules: api.env('test') ? 'commonjs' : false}]],
-    plugins: [
-      [
-        '@babel/transform-runtime',
-        {
-          regenerator: true,
-        }
-      ]
+module.exports = {
+  presets: [['@babel/preset-env', {modules: false}]],
+  plugins: [
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        regenerator: true
+      }
     ]
+  ],
+  env: {
+    test: {
+      presets: [['@babel/preset-env', {targets: {node: 'current'}}]]
+    }
   }
 }

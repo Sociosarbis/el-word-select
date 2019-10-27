@@ -1,11 +1,11 @@
 扩展用法
 
-**利用static prop让el-word-select暂停相应selection的变化，进一步让操作弹出的表单时，不会隐藏**
+**利用autoClose prop让el-word-select暂停相应selection的变化，进一步让操作弹出的表单时，不会隐藏**
 
 **也可以利用el-word-select的close方法强制关闭表单**
 ```vue
 <template>
-  <el-word-select ref="wordSelect" @change="handleSelectChange" :static="needStatic">
+  <el-word-select ref="wordSelect" @change="handleSelectChange" :autoClose="needAutoClose">
     <div
       id="subject_summary"
       class="subject_summary_all"
@@ -68,7 +68,7 @@ export default {
   data() {
     return {
       selectWord: '',
-      needStatic: false,
+      needAutoClose: true,
       formContent: DEFAULT_FORM_CONTENT
     }
   },
@@ -81,7 +81,7 @@ export default {
           cat: 'all'
         })
         this.$nextTick(() => {
-          this.needStatic = true
+          this.autoClose = false
         })
       }
     },
@@ -96,7 +96,7 @@ export default {
       })
     },
     closeForm() {
-      this.needStatic = false
+      this.autoClose = true
       this.$refs.wordSelect.close()
     },
     cancel() {

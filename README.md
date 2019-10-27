@@ -22,19 +22,36 @@ short description + sample image(png/gif/mp4)
 
 ## Introduction
 
-If there is no more words to write, this section can be deleted.
+响应组件内用户的文本选择
 
 [⬆ Back to Top](#table-of-contents)
 
 ## Features
 
+1. 一个提供监听组件内用户文本选择功能的组件，通过 slot 与其他组件组合
+2. 提供两个定位于文本选择位置 slot，方便在出现文本选择时，在相应位置作出 UI 上的响应
+
 [⬆ Back to Top](#table-of-contents)
 
+## Todos
+
+- [ ] 节流对于 node 是否有被选中的判断
+
+- [ ] 当 layout 改变时，更新文本选中的位置
+
 ## Install
+
+```bash
+npm install el-word-select --save
+// 或
+yarn add el-word-select
+```
 
 [⬆ Back to Top](#table-of-contents)
 
 ## Usage
+
+- [basic](https://sociosarbis.github.io/el-word-select/Demo/basic)
 
 [⬆ Back to Top](#table-of-contents)
 
@@ -60,6 +77,11 @@ Please refer to our [contributing guide](https://github.com/FEMessage/.github/bl
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+[Sociosarbis](https://github.com/Sociosarbis)
+<img style="width:50px;" src="https://avatars0.githubusercontent.com/u/25837029?s=460&v=4" />|
+--------- |
+💻 💡📖 |
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
