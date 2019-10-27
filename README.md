@@ -1,9 +1,9 @@
 # el-word-select
 
 [![Build Status](https://badgen.net/travis/sociosarbis/el-word-select/master)](https://travis-ci.com/sociosarbis/el-word-select)
-[![NPM Download](https://badgen.net/npm/dm/@sociosarbis/el-word-select)](https://www.npmjs.com/package/@sociosarbis/el-word-select)
-[![NPM Version](https://badgen.net/npm/v/@sociosarbis/el-word-select)](https://www.npmjs.com/package/@sociosarbis/el-word-select)
-[![NPM License](https://badgen.net/npm/license/@sociosarbis/el-word-select)](https://github.com/sociosarbis/el-word-select/blob/master/LICENSE)
+[![NPM Download](https://badgen.net/npm/dm/el-word-select)](https://www.npmjs.com/package/@sociosarbis/el-word-select)
+[![NPM Version](https://badgen.net/npm/v/el-word-select)](https://www.npmjs.com/package/@sociosarbis/el-word-select)
+[![NPM License](https://badgen.net/npm/license/el-word-select)](https://github.com/sociosarbis/el-word-select/blob/master/LICENSE)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/sociosarbis/el-word-select/pulls)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 
