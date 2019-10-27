@@ -76,9 +76,8 @@ Please refer to our [contributing guide](https://github.com/FEMessage/.github/bl
 
 Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
 
-[Sociosarbis](https://github.com/Sociosarbis)
-<img style="width:50px;" src="https://avatars0.githubusercontent.com/u/25837029?s=460&v=4" />|
---------- |
+[Sociosarbis](https://github.com/Sociosarbis)<img width="48" src="https://avatars0.githubusercontent.com/u/25837029?s=460&v=4" />
+|--------- |
 💻 💡📖 |
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
