@@ -10,9 +10,9 @@ install:
 - yarn --frozen-lockfile
 - yarn test
 script:
-- ./build.sh
+- chmod +x ./build.sh
 after_script:
-- ./notify.sh
+- chmod +x ./notify.sh
 cache: yarn
 deploy:
 - provider: pages
