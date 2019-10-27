@@ -43,6 +43,7 @@
     "@babel/preset-env": "^7.4.3",
     "@femessage/el-form-renderer": "^1.11.5",
     "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.5",
     "file-loader": "^3.0.1",
@@ -96,7 +97,7 @@
     ]
   },
   "resolutions": {
-    "@babel/core": "^7.4.3"
+    "babel-core": "^7.0.0-bridge.0"
   },
   "jest": {
     "moduleFileExtensions": [
