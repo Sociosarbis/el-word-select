@@ -1,7 +1,7 @@
 {
   "name": "@sociosarbis/el-word-select",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "A component handles selection changes in your other components.",
   "author": "https://github.com/sociosarbis",
   "license": "MIT",
   "repository": {
