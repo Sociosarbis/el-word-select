@@ -1,12 +1,13 @@
 <template>
   <div
     ref="selectWrapper"
-    class="el-word-select"
+    :class="['el-word-select', {selected: isSelected}]"
     v-select
+    v-resize.debounce="updateSelectionInfos"
     @vselectchange="maybeHidePoppper"
     @vdown="handlePointerDown"
     @vmove="handlePointerMove"
-    @vup="handlePointerUp"
+    @vup="updateSelectionInfos"
   >
     <!-- @slot 放置被包裹的组件 -->
     <slot />
@@ -36,6 +37,7 @@
 </template>
 <script>
 import wordSelectDirective from './directives/wordSelect'
+import resizeDirective from './directives/resize'
 
 const defaultHandlePopoverOptions = {
   placement: 'right-start',
@@ -110,7 +112,8 @@ export default {
     }
   },
   directives: {
-    select: wordSelectDirective
+    select: wordSelectDirective,
+    resize: resizeDirective
   },
   watch: {
     autoClose(value) {
@@ -154,14 +157,14 @@ export default {
       this.$refs.suggest && this.$refs.suggest.updatePopper()
     },
     getOffsetParent() {
-      return this.$refs.selectWrapper.offsetParent || document.body
+      return this.$refs.selectWrapper || document.body
     },
     getRangeOffsetToParent(range) {
       const bounds = range.getBoundingClientRect()
       const parentBounds = this.getOffsetParent().getBoundingClientRect()
       return [bounds.left - parentBounds.left, bounds.top - parentBounds.top]
     },
-    handlePointerUp(e) {
+    updateSelectionInfos() {
       const selection = document.getSelection()
       if (selection && selection.type === 'Range') {
         const range = this.pruneRange(selection.getRangeAt(0))
@@ -177,11 +180,9 @@ export default {
          * @property {string} selectedText 用户选中的文本
          */
         this.$emit('change', range.toString())
-        if (!this.autoClose) {
-          this.$nextTick(() => {
-            this.updatePopperPosition()
-          })
-        }
+        this.$nextTick(() => {
+          this.updatePopperPosition()
+        })
       } else {
         if (!this.autoClose) return
         this.close()
@@ -267,6 +268,8 @@ export default {
 </script>
 <style lang="less">
 .el-word-select {
+  position: relative;
+
   .selection-ref {
     position: absolute;
     visibility: hidden;
@@ -281,5 +284,13 @@ export default {
 .el-word-select-popper {
   padding: 0;
   min-width: auto;
+
+  &:not(.fade-in-linear-enter-active) {
+    &:not(.fade-in-linear-leave-active) {
+      transition-property: left, top, transform;
+      transition-duration: 250ms;
+      transition-timing-function: ease-in-out;
+    }
+  }
 }
 </style>
